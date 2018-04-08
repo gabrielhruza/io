@@ -34,12 +34,21 @@ def register(request):
         username 	= request.POST['username']
         email 		= request.POST['email']
         password 	= request.POST['password']
+                
         
-        user = User.objects.create_user(username, email, password)
-        user.save()
-        messages.success(request, 'Registro completo, ahora puede loguearse.')
-        return redirect('login')
-    
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            user = None
+
+        if user is None:
+            user = User.objects.create_user(username, email, password)
+            user.save()
+            messages.success(request, 'Registro completo, ahora puede loguearse.')
+            return redirect('login')
+        else:
+            messages.error(request, 'Nombre de usuario duplicado.')
+
     context = {
         'titulo': titulo,
     }
