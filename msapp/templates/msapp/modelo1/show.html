@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+<div class="card">
+<div class="card-body">
+<h5 class="card-title">Detalle Modelo 1</h5>
+
+<h6>Nombre: {{ modelo.nombre_producto }}</h6>
+
+
+<ul class="list-inline">
+   <li class="list-inline-item">
+   	Stock: 	<strong>{{ modelo.stock }}</strong>
+   </li>
+   <li class="list-inline-item">
+   	Y (Cantidad pedida): <strong>{{ modelo.y }}</strong>
+   </li>
+   <li class="list-inline-item">
+   	D (Tasa de demanda): <strong>{{ modelo.d }}</strong>
+   </li>
+   <li class="list-inline-item">
+   	Tiempo: <strong>{{ modelo.tiempo }}</strong>
+   </li>
+</ul>
+<ul class="list-inline">
+   	<li class="list-inline-item">
+   		Promedio de inventario:	<strong>{{ modelo.ip }}</strong>
+   	</li>
+   <li class="list-inline-item">
+   	T (Duración del ciclo):	<strong>{{ modelo.t }}</strong>
+   </li>
+</ul>
+
+<ul class="list-inline">
+   <li class="list-inline-item">
+   	K (Costo de pedido): <strong>{{ modelo.k }}</strong>
+   </li>
+   <li class="list-inline-item">
+   	H (Costo de almacenamiento): <strong>{{ modelo.h }}</strong>
+   </li>
+</ul>
+
+<ul class="list-inline">
+   <li class="list-inline-item">
+   	y* (Lote óptimo de compra): <strong>{{ modelo.loc }}</strong>
+   </li>
+   <li class="list-inline-item">
+   	t* (Longitud de ciclo): <strong>{{ modelo.lc }}</strong>
+   </li>
+</ul>
+
+<div id="grafico"></div>
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+	new Morris.Line({
+  // ID of the element in which to draw the chart.
+  element: 'grafico',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: [
+  	{ year: '{{modelo.lc}}', value: 0 },
+    { year: '{{modelo.lc}}', value: '{{modelo.loc}}' },
+    { year: '10*{{modelo.lc}}', value: 0 },
+    { year: '10*{{modelo.lc}}', value: '{{modelo.loc}}' },
+    { year: '20*{{modelo.lc}}', value: 0 },
+    { year: '20*{{modelo.lc}}', value: '{{modelo.loc}}' },
+    { year: '30*{{modelo.lc}}', value: 0 },
+    { year: '30*{{modelo.lc}}', value: '{{modelo.loc}}' },
+    { year: '40*{{modelo.lc}}', value: 0 },
+    { year: '40*{{modelo.lc}}', value: '{{modelo.loc}}' },
+  ],
+  // The name of the data record attribute that contains x-values.
+  xkey: 'year',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['value'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Value']
+});
+</script>
+{% endblock %}
+

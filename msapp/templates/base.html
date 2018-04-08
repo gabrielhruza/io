@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+  <html>
+    <head>
+ 		<title>{{titulo}}</title>
+	    <!--Import css-->
+	    <link type="text/css" rel="stylesheet" href="{% static 'auth2/css/bootstrap.min.css' %}"  media="screen,projection"/>
+	    <!--Let browser know website is optimized for mobile-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+    <div class="container">
+	 
+    <div class="card" style="margin-top: 1em;">
+  	<ul class="nav justify-content-center">
+
+    	<li class="nav-item">
+      	<a class="nav-link active" href="{% url 'index' %}">Inicio</a>
+    	</li>
+    	
+      <li class="nav-item">
+    		<a class="nav-link" href="{% url 'modelo1_nuevo' %}">Modelo1</a>
+    	</li>
+
+      <li class="nav-item">
+        	<a class="nav-link" href="{% url 'modelo1_index' %}">Lista de productos</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">{{ request.user.username }}</a>
+    	</li>
+
+    	<li class="nav-item">
+      	<a class="nav-link" href="{% url 'logout' %}">Salir</a>
+    	</li>
+      
+  	</ul>
+    </div>
+
+    </div>
+
+    <div class="container" style="margin-top: 1em;">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+	</div>	
+	
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="{% static 'auth2/js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'auth2/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'auth2/js/popper.min.js' %}"></script>
+
+    </body>
+  </html>

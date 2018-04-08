@@ -1,0 +1,51 @@
+Skip to content
+Features
+Business
+Explore
+Marketplace
+Pricing
+This repository
+Search
+Sign in or Sign up
+ Watch 1  Star 0  Fork 0 GabrielBD/io
+ Code  Issues 0  Pull requests 0  Projects 0  Insights
+Branch: master Find file Copy path io/ms/auth2/static/auth2/css/style.css
+5836cff  a day ago
+@GabrielBD GabrielBD start
+1 contributor
+RawBlameHistory    
+34 lines (29 sloc)  309 Bytes
+body
+{
+	background: #f5f5f5;
+}
+
+h5
+{
+	font-weight: 400;
+}
+
+.container
+{
+	margin-top: 80px;
+	width: 400px;
+	height: 700px;
+}
+
+.tabs .indicator
+{
+	background-color: #e0f2f1;
+	height: 60px;
+	opacity: 0.3;
+}
+
+.form-container
+{
+	padding: 40px;
+	padding-top: 10px;
+}
+
+.confirmation-tabs-btn
+{
+	position: absolute;
+}

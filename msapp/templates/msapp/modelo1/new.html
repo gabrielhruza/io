@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load widget_tweaks %}
+
+<form method="post">
+
+{% csrf_token %}
+	<div class="card">
+		<div class="card-body">
+		{% for hidden_field in modelo.hidden_fields %}
+    		{{ hidden_field }}
+  		{% endfor %}
+
+	  	{% for field in modelo.visible_fields %}
+	    	<div class="form-group">
+	      		{{ field.label_tag }}
+			    {% render_field field class="form-control" %}
+			    {% if field.help_text %}
+			    	<small class="form-text text-muted">{{ field.help_text }}</small>
+			    {% endif %}
+		    </div>
+	  	{% endfor %}
+	  	<button type="submit" class="btn btn-primary">Crear</button>
+	  	</div>
+	 </div>
+
+</form>
+{% endblock %}
