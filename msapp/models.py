@@ -18,24 +18,24 @@ class Modelo1(models.Model):
 	usuario 	= models.ForeignKey(User, on_delete=models.CASCADE)
 
 	#stock actual
-	stock 		= models.IntegerField()
+	stock 		= models.IntegerField(verbose_name = "Stock actual")
 
 	#Cantidad pedida (cantidad de unidades)
-	y 		= models.IntegerField()
+	y 		= models.IntegerField(verbose_name='Cantidad pedida')
 	
 	#Tiempo de simulacion
-	tiempo 	= models.IntegerField()
+	tiempo 	= models.IntegerField(default=1)
 
 	#Tasa de demanda (unidades por unidad de tiempo)
-	d		= models.IntegerField()
+	d		= models.IntegerField(verbose_name='Demanda')
 
 	#Costo de preparación correspondiente 
 	#a la colocación de un pedido ($/pedido)		
-	k 		= models.IntegerField()		
+	k 		= models.IntegerField(verbose_name='Costo de elaboración pedido')		
 
 	#Costo de almacenamiento 
 	#($ por unidad en inventario por unidad de tiempo)
-	h 		= models.IntegerField()		
+	h 		= models.IntegerField(verbose_name='Costo de almacenamiento')		
 	
 	def __str__(self):
 		return self.nombre
