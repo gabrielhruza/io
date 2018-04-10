@@ -4,7 +4,6 @@
 {% load widget_tweaks %}
 
 <form method="post">
-
 {% csrf_token %}
 	<div class="card">
 		<div class="card-body">
@@ -12,15 +11,20 @@
     		{{ hidden_field }}
   		{% endfor %}
 
+  		<div class="row">
 	  	{% for field in modelo.visible_fields %}
+	    	
+	    	<div class="col-md-6 col-sm-12">
 	    	<div class="form-group">
 	      		{{ field.label_tag }}
 			    {% render_field field class="form-control" %}
 			    {% if field.help_text %}
 			    	<small class="form-text text-muted">{{ field.help_text }}</small>
 			    {% endif %}
+			</div>
 		    </div>
 	  	{% endfor %}
+	  	</div>
 	  	<button type="submit" class="btn btn-primary">Crear</button>
 	  	</div>
 	 </div>
