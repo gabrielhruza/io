@@ -9,21 +9,19 @@
     <table class="table table-striped">
 	  <thead>
 	    <tr>
-	    	<th scope="col">Id</th>	
 		    <th scope="col">Nombre</th>
 		    <th scope="col">Categoría</th>
-		    <th scope="col">Stock actual</th>
+		    <th scope="col">Acciones</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	    {% for producto in productos %}
 	    <tr>
-	    	<th scope="row">
-	    		<a href="{% url 'modelo1_show' producto.id %}">{{ producto.id }}</a></li>
-	    	</th>
 	      	<td>{{ producto.nombre_producto }}</td>
 	      	<td>{{ producto.categoria }}</td>
-	      	<td></td>
+	      	<td scope="row">
+	    		<a href="{% url 'modelo1_show' producto.id %}">Ver</a></li>
+	    	</td>
 	    </tr>
     	{% endfor %}	
 	  </tbody>
