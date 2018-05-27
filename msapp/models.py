@@ -18,40 +18,35 @@ class Modelo1(models.Model):
 	usuario 	= models.ForeignKey(User, on_delete=models.CASCADE)
 
 	#stock actual
-	stock 		= models.IntegerField(verbose_name = "Stock actual")
-
-	#Cantidad pedida (cantidad de unidades)
-	y 		= models.IntegerField(verbose_name='Cantidad pedida')
+	#stock 		= models.IntegerField(verbose_name = "Stock actual", default=100)
 	
 	#Tiempo de simulacion
 	tiempo 	= models.IntegerField(default=1)
 
 	#Tasa de demanda (unidades por unidad de tiempo)
-	d		= models.IntegerField(verbose_name='Demanda')
+	d		= models.IntegerField(verbose_name='Tasa de Demanda')
 
 	#Costo de preparación correspondiente 
 	#a la colocación de un pedido ($/pedido)		
-	k 		= models.IntegerField(verbose_name='Costo de elaboración pedido')		
+	k 		= models.IntegerField(verbose_name='Costo de Preparación de Pedido')		
 
 	#Costo de almacenamiento 
 	#($ por unidad en inventario por unidad de tiempo)
-	h 		= models.IntegerField(verbose_name='Costo de almacenamiento')		
+	h 		= models.IntegerField(verbose_name='Costo de Almacenamiento')
+
+			
 	
 	def __str__(self):
 		return self.nombre
 
-	def duracion_ciclo_pedido(self):
-		return self.y / self.d
-	t = property(duracion_ciclo_pedido)
-
 	def inventario_promedio(self):
-		return self.y / 2
+		return self.d / 2
 	ip = property(inventario_promedio)
 
 	def lote_optimo_compra(self):
-		return sqrt((2*self.k*self.d)/self.h)
+		return round(sqrt((2*self.k*self.d)/self.h))
 	loc = property(lote_optimo_compra)
 
 	def longitud_ciclo(self):
-		return self.loc / self.d
+		return round(self.loc / self.d)
 	lc 	= property(longitud_ciclo)

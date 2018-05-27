@@ -27,7 +27,6 @@ def modelo1_nuevo(request):
 	if request.method == 'POST':
 		modelo 	= Modelo1Form(request.POST, prefix='modelo1')
 
-		print(modelo.is_valid())
 
 		if modelo.is_valid():
 
@@ -69,6 +68,7 @@ def modelo1_show(request, id):
 
 	usuario_logueado = request.user
 	modelo 	= Modelo1.objects.get(usuario=usuario_logueado, pk=id)
+	
 
 	context = {
 		'titulo'	: titulo,
