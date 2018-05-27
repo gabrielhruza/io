@@ -21,18 +21,18 @@ class Modelo1(models.Model):
 	#stock 		= models.IntegerField(verbose_name = "Stock actual", default=100)
 	
 	#Tiempo de simulacion
-	tiempo 	= models.IntegerField(default=1)
+	tiempo 	= models.FloatField(default=1)
 
 	#Tasa de demanda (unidades por unidad de tiempo)
 	d		= models.IntegerField(verbose_name='Tasa de Demanda')
 
 	#Costo de preparación correspondiente 
 	#a la colocación de un pedido ($/pedido)		
-	k 		= models.IntegerField(verbose_name='Costo de Preparación de Pedido')		
+	k 		= models.FloatField(verbose_name='Costo de Preparación de Pedido')		
 
 	#Costo de almacenamiento 
 	#($ por unidad en inventario por unidad de tiempo)
-	h 		= models.IntegerField(verbose_name='Costo de Almacenamiento')
+	h 		= models.FloatField(verbose_name='Costo de Almacenamiento')
 
 			
 	
