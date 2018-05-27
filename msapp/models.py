@@ -48,5 +48,5 @@ class Modelo1(models.Model):
 	loc = property(lote_optimo_compra)
 
 	def longitud_ciclo(self):
-		return round(self.loc / self.d)
+		return round(self.loc / (self.d/self.tiempo) )
 	lc 	= property(longitud_ciclo)
