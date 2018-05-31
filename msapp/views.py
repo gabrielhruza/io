@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
+from django.contrib.auth.decorators import login_required
 
 from .models import Modelo1
 from .forms import Modelo1Form
@@ -17,7 +18,7 @@ def index(request):
 	return HttpResponse(template.render(context, request))
 
 
-
+@login_required
 def modelo1_nuevo(request):
 	titulo 	= 'Producto nuevo'
 	template = loader.get_template('msapp/modelo1/new.html')
@@ -45,7 +46,7 @@ def modelo1_nuevo(request):
 	return HttpResponse(template.render(context, request))
 
 
-
+@login_required
 def modelo1_index(request):
 	titulo 	= 'Index'
 	template = loader.get_template('msapp/modelo1/index.html')
@@ -62,6 +63,7 @@ def modelo1_index(request):
 	return HttpResponse(template.render(context, request))
 
 
+@login_required
 def modelo1_show(request, id):
 	titulo 	= 'Ver'
 	template = loader.get_template('msapp/modelo1/show.html')

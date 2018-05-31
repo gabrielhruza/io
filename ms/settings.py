@@ -84,6 +84,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
 
@@ -101,6 +102,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+#redirect when @login_required annotations set
+LOGIN_URL = '/auth2/login/'
+
+
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
