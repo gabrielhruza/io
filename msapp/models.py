@@ -37,7 +37,7 @@ class Modelo1(models.Model):
 			
 	
 	def __str__(self):
-		return self.nombre
+		return self.nombre_producto
 
 	def inventario_promedio(self):
 		return self.d / 2
@@ -45,12 +45,19 @@ class Modelo1(models.Model):
 
 	def lote_optimo_compra(self):
 		return round(sqrt((2*self.k*self.d)/self.h))
-	y = property(lote_optimo_compra)
+	loc = property(lote_optimo_compra)
 
 	def longitud_ciclo(self):
-		return round(self.y / (self.d/self.tiempo) )
+		return round(self.loc / (self.d/self.tiempo) )
 	lc 	= property(longitud_ciclo)
 
 	def costo_inventario(self):
-		return round(self.k/(self.y/self.d) + self.h*(self.y/2))
+		yy = self.loc
+		dd = self.d
+		kk = self.k
+		hh = self.h
+		yd = yy/dd
+		termino1 = kk / yd
+		termino2 = hh * (yy/2)
+		return round(termino1 + termino2) 
 	ci = property(costo_inventario)
