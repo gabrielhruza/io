@@ -45,8 +45,12 @@ class Modelo1(models.Model):
 
 	def lote_optimo_compra(self):
 		return round(sqrt((2*self.k*self.d)/self.h))
-	loc = property(lote_optimo_compra)
+	y = property(lote_optimo_compra)
 
 	def longitud_ciclo(self):
-		return round(self.loc / (self.d/self.tiempo) )
+		return round(self.y / (self.d/self.tiempo) )
 	lc 	= property(longitud_ciclo)
+
+	def costo_inventario(self):
+		return round(self.k/(self.y/self.d) + self.h*(self.y/2))
+	ci = property(costo_inventario)
