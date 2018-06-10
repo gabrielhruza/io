@@ -14,11 +14,11 @@
 <strong>Detalle de {{ modelo.nombre_producto }}</strong>
 </h5>
 
-<div class="row">
+<h6>Categoría:  <strong>{{ modelo.categoria }}</strong></h6>
 
+<div class="row">
   <div class="col-md-6 col-sm-12">
     <ul class="list-unstyled">
-      <li>Categoría:  <strong>{{ modelo.categoria }}</strong></li>
       <li>(D) Tasa de Demanda: <strong>{{ modelo.d }}</strong></li>
       <li>(K) Costo de Emisión de Pedido: <strong>{{ modelo.k }}</strong></li>
       <li>(h) Costo de almacenamiento: <strong>{{ modelo.h }}</strong></li>
