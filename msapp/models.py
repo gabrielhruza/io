@@ -26,15 +26,15 @@ class Modelo1(models.Model):
 	tiempo 	= models.FloatField(default=1)
 
 	#Tasa de demanda (unidades por unidad de tiempo)
-	d		= models.IntegerField(verbose_name='Demanda Total', validators=[MinValueValidator(0)])
+	d		= models.IntegerField(verbose_name='Demanda Total', validators=[MinValueValidator(1)])
 
 	#Costo de preparación correspondiente 
 	#a la colocación de un pedido ($/pedido)		
-	k 		= models.FloatField(verbose_name='Costo de Preparación de Pedido', validators=[MinValueValidator(0)])		
+	k 		= models.FloatField(verbose_name='Costo de Preparación de Pedido', validators=[MinValueValidator(1)])		
 
 	#Costo de almacenamiento 
 	#($ por unidad en inventario por unidad de tiempo)
-	h 		= models.FloatField(verbose_name='Costo Unitario de Almacenamiento', validators=[MinValueValidator(0)])
+	h 		= models.FloatField(verbose_name='Costo Unitario de Almacenamiento', validators=[MinValueValidator(1)])
 
 			
 	
