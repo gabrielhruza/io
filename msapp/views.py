@@ -112,6 +112,8 @@ def modelo1_edit(request, id):
 			modelo = modelo.save(commit=False)
 			modelo.usuario = request.user
 			modelo.save()
+			producto_edit.delete()
+			messages.success(request, 'Éxito. Se ha editado correctamente.')
 			return redirect('modelo1_index')
 		else:
 			modelo_context 	= modelo
