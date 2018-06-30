@@ -36,7 +36,7 @@ def modelo1_nuevo(request):
 			modelo = modelo.save(commit=False)
 			modelo.usuario = request.user
 			modelo.save()
-			messages.success(request, 'Éxito. Se ha creado correctamente.')
+			messages.success(request, 'Éxito. Se ha creado correctamente el producto.')
 			return redirect('modelo1_index')
 		else:
 			modelo_context 	= modelo

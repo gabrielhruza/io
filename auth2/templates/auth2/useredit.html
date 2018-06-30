@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissable alert-link" role="alert">    
+      <button class="close" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+        <p><b>{{ message }}</b></p>
+      </div>
+      {% endfor %}
+{% endif %}
+
+<div class="row">
+
+<div class="col-md-6 col-sm-12 offset-md-3">
+<div class="card fat">
+			<div class="card-body">
+				<h4 class="card-title">{{ titulo }}</h4>
+					<form method="POST">{% csrf_token %}
+						<div class="form-group">
+							<label for="usuario">Usuario</label>
+							<input id="usuario" type="text" class="form-control" name="username" required autofocus value="{{ user_username }}">
+						</div>
+
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input id="email" type="text" class="form-control" name="email" value="{{ user_email }}" required autofocus>
+						</div>
+
+						<div class="form-group no-margin">
+							<button type="submit" class="btn btn-primary btn-block">
+							Editar
+							</button>
+						</div>
+						
+					</form>
+			</div>
+		</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as login_mio, logout as logout_mio
 from django.contrib.auth.models import User
 
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -51,6 +53,42 @@ def register(request):
 
     context = {
         'titulo': titulo,
+    }
+
+    return HttpResponse(template.render(context, request))
+
+
+@login_required
+def edit(request):
+    titulo  = 'Editar Datos de Usuario'
+    template = loader.get_template('auth2/useredit.html')
+    
+    user_username   = request.user.username
+    user_email      = request.user.email
+
+    if request.method == "POST":
+        username    = request.POST['username']
+        email       = request.POST['email']
+                
+        
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            user = None
+
+        if user is None:
+            request.user.username = username 
+            request.user.email = email
+            request.user.save()
+            messages.success(request, 'Éxito al editar el usuario.')
+            return redirect('modelo1_index')
+        else:
+            messages.error(request, 'Nombre de usuario duplicado.')
+
+    context = {
+        'titulo': titulo,
+        'user_username'     : user_username,
+        'user_email'        : user_email
     }
 
     return HttpResponse(template.render(context, request))
