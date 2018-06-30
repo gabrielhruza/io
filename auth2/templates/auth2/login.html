@@ -14,6 +14,10 @@
 
     <body>
     <div class="container">
+
+    <div class="row mt-5">
+    <div class="col-md-6 col-sm-12 offset-md-3">
+
     	{% if messages %}
 		  {% for message in messages %}
 		  <div class="alert alert-{{ message.tags }} alert-dismissable alert-link" role="alert">    
@@ -59,6 +63,13 @@
 					</form>
 			</div>
 		</div>
+
+	</div>
+	</div>
+
+
+	{% include 'footer.html' %}
+	
 
       	<!--JavaScript at end of body for optimized loading-->
       	<script type="text/javascript" src="{% static 'auth2/js/jquery-3.2.1.min.js' %}"></script>

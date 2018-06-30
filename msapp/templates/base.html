@@ -7,7 +7,7 @@
 	    <link type="text/css" rel="stylesheet" href="{% static 'auth2/css/bootstrap.min.css' %}"  media="screen,projection"/>
 	    <!--Let browser know website is optimized for mobile-->
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <link rel="shortcut icon" type="image/png" href="{% static 'auth2/images/utn.png%}"/>
+      <link rel="shortcut icon" type="image/png" href="{% static 'auth2/images/utn.png' %}"/>
     </head>
 
     <body>
@@ -55,10 +55,10 @@
     <div class="container" style="margin-top: 1em;">
       {% block content %}
       {% endblock %}
+
+      {% include 'footer.html' %}
     </div>
 
-	</div>	
-	
 <style type="text/css">
   .nav-link{
     color: #e2e2e2 !important;

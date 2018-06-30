@@ -27,9 +27,9 @@ h5
 
 .container
 {
-	margin-top: 80px;
-	width: 400px;
-	height: 700px;
+	#margin-top: 80px;
+	#width: 400px;
+	#height: 700px;
 }
 
 .tabs .indicator
@@ -41,8 +41,8 @@ h5
 
 .form-container
 {
-	padding: 40px;
-	padding-top: 10px;
+	#padding: 40px;
+	#padding-top: 10px;
 }
 
 .confirmation-tabs-btn

@@ -13,7 +13,9 @@
 
     <body>
     <div class="container">
-    	
+    <div class="row mt-5">
+    <div class="col-md-6 col-sm-12 offset-md-3">
+
     	{% if messages %}
 		  {% for message in messages %}
 		  <div class="alert alert-{{ message.tags }} alert-dismissable alert-link" role="alert">    
@@ -28,12 +30,12 @@
 				<h4 class="card-title">Registrarse</h4>
 					<form method="POST">{% csrf_token %}
 						<div class="form-group">
-									<label for="name">Name</label>
+									<label for="name">Usuario</label>
 									<input id="name" type="text" class="form-control" name="username" required autofocus>
 								</div>
 
 								<div class="form-group">
-									<label for="email">E-Mail Address</label>
+									<label for="email">E-Mail</label>
 									<input id="email" type="email" class="form-control" name="email" required>
 								</div>
 
@@ -54,6 +56,11 @@
 			</div>
 		</div>
 
+		</div>
+	</div>
+
+	
+	{% include 'footer.html' %}
 
       	<!--JavaScript at end of body for optimized loading-->
       	<script type="text/javascript" src="{% static 'auth2/js/jquery-3.2.1.min.js' %}"></script>
