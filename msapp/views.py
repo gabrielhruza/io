@@ -127,28 +127,3 @@ def modelo1_edit(request, id):
 	return HttpResponse(template.render(context, request))
 
 
-
-##plot grafico
-import matplotlib as pl
-pl.use('Agg')
-import matplotlib.pyplot as plt
-import numpy as np
-
-from matplotlib.backends.backend_agg import FigureCanvasAgg
-from matplotlib.figure import Figure
-
-def getimage(request):
-
-	x = np.arange(8)
-	s = np.piecewise(x, [x < 3, x >= 4], [lambda x: -x, lambda x: 2 * x])
-	plt.plot(x, s)
-	 
-	plt.xlabel('Dias')
-	plt.ylabel('Inventario Actual')
-	plt.title('Inventario')
-	plt.grid(True)
- 	
-	response = HttpResponse(content_type="image/jpeg")
-
-	plt.savefig(response, format="jpg")
-	return response

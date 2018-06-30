@@ -12,5 +12,5 @@ urlpatterns = [
     path('modelo1/index', views.modelo1_index, name='modelo1_index'),
     path('modelo1/show/<id>/', views.modelo1_show, name='modelo1_show'),
     path('modelo1/edit/<id>/', views.modelo1_edit, name='modelo1_edit'),
-    path('plot', views.getimage, name='getimage'),
+    ##path('plot', views.getimage, name='getimage'),
 ]
