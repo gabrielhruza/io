@@ -49,7 +49,8 @@ class Modelo1(models.Model):
 
 		resultado = round(sqrt((2*self.k*self.d)/self.h)) 
 		
-		if (resultado > self.d):
+		##si q° > D => q° := D por definicion
+		if (resultado > self.d): 
 			return self.d
 
 		return resultado
@@ -57,7 +58,7 @@ class Modelo1(models.Model):
 
 	def longitud_ciclo(self):
 		lc = self.loc / (self.d/self.tiempo)
-
+		print(lc)
 		if(lc < 1):
 			lc = lc * 365 #paso a dias		
 
