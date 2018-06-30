@@ -32,7 +32,7 @@ class Modelo1(models.Model):
 
 	#Costo de almacenamiento 
 	#($ por unidad en inventario por unidad de tiempo)
-	h 		= models.FloatField(verbose_name='Costo de Almacenamiento')
+	h 		= models.FloatField(verbose_name='Costo Unitario de Almacenamiento')
 
 			
 	
@@ -44,7 +44,13 @@ class Modelo1(models.Model):
 	ip = property(inventario_promedio)
 
 	def lote_optimo_compra(self):
-		return round(sqrt((2*self.k*self.d)/self.h))
+
+		resultado = round(sqrt((2*self.k*self.d)/self.h)) 
+		
+		if (resultado > self.d):
+			return self.d
+
+		return resultado
 	loc = property(lote_optimo_compra)
 
 	def longitud_ciclo(self):
