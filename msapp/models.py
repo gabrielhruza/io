@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 
 from math import sqrt
+
 
 
 # Create your models here.
@@ -24,15 +26,15 @@ class Modelo1(models.Model):
 	tiempo 	= models.FloatField(default=1)
 
 	#Tasa de demanda (unidades por unidad de tiempo)
-	d		= models.IntegerField(verbose_name='Demanda Total')
+	d		= models.IntegerField(verbose_name='Demanda Total', validators=[MinValueValidator(0)])
 
 	#Costo de preparación correspondiente 
 	#a la colocación de un pedido ($/pedido)		
-	k 		= models.FloatField(verbose_name='Costo de Preparación de Pedido')		
+	k 		= models.FloatField(verbose_name='Costo de Preparación de Pedido', validators=[MinValueValidator(0)])		
 
 	#Costo de almacenamiento 
 	#($ por unidad en inventario por unidad de tiempo)
-	h 		= models.FloatField(verbose_name='Costo Unitario de Almacenamiento')
+	h 		= models.FloatField(verbose_name='Costo Unitario de Almacenamiento', validators=[MinValueValidator(0)])
 
 			
 	

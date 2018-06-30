@@ -3,6 +3,16 @@
 {% block content %}
 {% load widget_tweaks %}
 
+{% if messages %}
+	{% for message in messages %}
+	<div class="alert alert-{{ message.tags }} alert-dismissable alert-link" role="alert">    
+	<button class="close" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+	<p><b>{{ message }}</b></p>
+	</div>
+	{% endfor %}
+{% endif %}
+
+
 <form method="post">
 {% csrf_token %}
 	<div class="card">
