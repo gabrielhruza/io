@@ -36,6 +36,7 @@ def modelo1_nuevo(request):
 			modelo = modelo.save(commit=False)
 			modelo.usuario = request.user
 			modelo.save()
+			messages.success(request, 'Éxito. Se ha creado correctamente.')
 			return redirect('modelo1_index')
 		else:
 			modelo_context 	= modelo
@@ -83,10 +84,7 @@ def modelo1_show(request, id):
 		}
 	except ObjectDoesNotExist:
 		messages.error(request, 'Error. No existe dicho producto')
-		context = {
-			'titulo'	: titulo,
-			'modelo'	: None,
-		}
+		return redirect('modelo1_index')
 
 	return HttpResponse(template.render(context, request))
 
@@ -96,20 +94,28 @@ def modelo1_edit(request, id):
 	titulo 	= 'Editar Producto'
 	template = loader.get_template('msapp/modelo1/new.html')
 
-	modelo_context = Modelo1Form(prefix='modelo1')
+	usuario_logueado = request.user
+
+	try:
+		producto_edit 	= Modelo1.objects.get(usuario=usuario_logueado, pk=id)
+	except ObjectDoesNotExist:
+		messages.error(request, 'Error. No existe dicho producto')
+		return redirect('modelo1_index')
+
+	modelo_context = Modelo1Form(prefix='modelo1_edit', instance=producto_edit)
 
 	if request.method == 'POST':
-		modelo 	= Modelo1Form(request.POST, prefix='modelo1')
+		modelo 	= Modelo1Form(request.POST, prefix='modelo1_edit')
 
 
 		if modelo.is_valid():
-
 			modelo = modelo.save(commit=False)
 			modelo.usuario = request.user
 			modelo.save()
 			return redirect('modelo1_index')
 		else:
 			modelo_context 	= modelo
+			print('hello')
 
 	context = {
 		'titulo'	: titulo,

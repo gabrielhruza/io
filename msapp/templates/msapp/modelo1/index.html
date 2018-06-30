@@ -2,6 +2,16 @@
 
 {% block content %}
 
+{% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissable alert-link" role="alert">    
+      <button class="close" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+        <p><b>{{ message }}</b></p>
+      </div>
+      {% endfor %}
+{% endif %}
+
+
 <div class="card">
   <div class="card-body">
   	<h5 class="card-title">Producto index</h5>
@@ -22,7 +32,7 @@
 	      	<td scope="row">
 	    		<a href="{% url 'modelo1_show' producto.id %}">Ver</a></li>
 	    		|
-	    		<a href="{% url 'modelo1_show' producto.id %}">Editar</a></li>
+	    		<a href="{% url 'modelo1_edit' producto.id %}">Editar</a></li>
 	    	</td>
 	    </tr>
     	{% endfor %}	
