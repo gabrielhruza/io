@@ -24,7 +24,7 @@ class Modelo1(models.Model):
 	tiempo 	= models.FloatField(default=1)
 
 	#Tasa de demanda (unidades por unidad de tiempo)
-	d		= models.IntegerField(verbose_name='Tasa de Demanda')
+	d		= models.IntegerField(verbose_name='Demanda Total')
 
 	#Costo de preparación correspondiente 
 	#a la colocación de un pedido ($/pedido)		
@@ -48,7 +48,13 @@ class Modelo1(models.Model):
 	loc = property(lote_optimo_compra)
 
 	def longitud_ciclo(self):
-		return round(self.loc / (self.d/self.tiempo) )
+		lc = self.loc / (self.d/self.tiempo)
+
+		if(lc < 1):
+			lc = lc * 365 #paso a dias		
+
+		return	format(lc, '.2f')
+
 	lc 	= property(longitud_ciclo)
 
 	def costo_inventario(self):

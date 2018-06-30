@@ -11,4 +11,5 @@ urlpatterns = [
     path('modelo1/nuevo', views.modelo1_nuevo, name='modelo1_nuevo'),
     path('modelo1/index', views.modelo1_index, name='modelo1_index'),
     path('modelo1/show/<id>/', views.modelo1_show, name='modelo1_show'),
+    path('plot', views.getimage, name='getimage'),
 ]
