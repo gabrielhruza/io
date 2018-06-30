@@ -21,6 +21,8 @@
 	      	<td>{{ producto.categoria }}</td>
 	      	<td scope="row">
 	    		<a href="{% url 'modelo1_show' producto.id %}">Ver</a></li>
+	    		|
+	    		<a href="{% url 'modelo1_show' producto.id %}">Editar</a></li>
 	    	</td>
 	    </tr>
     	{% endfor %}	

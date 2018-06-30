@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .models import Modelo1
 from .forms import Modelo1Form
@@ -64,21 +65,59 @@ def modelo1_index(request):
 	return HttpResponse(template.render(context, request))
 
 
+from django.core.exceptions import ObjectDoesNotExist
+
+
 @login_required
 def modelo1_show(request, id):
 	titulo 	= 'Ver'
 	template = loader.get_template('msapp/modelo1/show.html')
 
 	usuario_logueado = request.user
-	modelo 	= Modelo1.objects.get(usuario=usuario_logueado, pk=id)
-	
+
+	try:
+		modelo 	= Modelo1.objects.get(usuario=usuario_logueado, pk=id)
+		context = {
+			'titulo'	: titulo,
+			'modelo'	: modelo,
+		}
+	except ObjectDoesNotExist:
+		messages.error(request, 'Error. No existe dicho producto')
+		context = {
+			'titulo'	: titulo,
+			'modelo'	: None,
+		}
+
+	return HttpResponse(template.render(context, request))
+
+
+@login_required
+def modelo1_edit(request, id):
+	titulo 	= 'Editar Producto'
+	template = loader.get_template('msapp/modelo1/new.html')
+
+	modelo_context = Modelo1Form(prefix='modelo1')
+
+	if request.method == 'POST':
+		modelo 	= Modelo1Form(request.POST, prefix='modelo1')
+
+
+		if modelo.is_valid():
+
+			modelo = modelo.save(commit=False)
+			modelo.usuario = request.user
+			modelo.save()
+			return redirect('modelo1_index')
+		else:
+			modelo_context 	= modelo
 
 	context = {
 		'titulo'	: titulo,
-		'modelo'	: modelo,
-	}
+		'modelo'	: modelo_context
+ 	}
 
 	return HttpResponse(template.render(context, request))
+
 
 
 ##plot grafico

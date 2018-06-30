@@ -7,6 +7,16 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
+{% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissable alert-link" role="alert">    
+      <button class="close" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+        <p><b>{{ message }}</b></p>
+      </div>
+      {% endfor %}
+{% endif %}
+
+
 <div class="card">
 <div class="card-body">
 
@@ -34,6 +44,8 @@
   </div>
 
 </div>
+
+<button type="submit" class="btn btn-info">Editar</button>
 
 <div id="grafico">
 </div>
