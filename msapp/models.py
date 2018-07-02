@@ -41,10 +41,10 @@ class Modelo1(models.Model):
 
 	#Costo de almacenamiento 
 	#($ por unidad en inventario por unidad de tiempo)
-	h 		= models.FloatField(verbose_name='Costo Unitario de Almacenamiento', validators=[MinValueValidator(1)])
+	h 		= models.FloatField(verbose_name='Costo Unitario de Almacenamiento', validators=[MinValueValidator(0)])
 
 	#Costo Unitario de Producto
-	h 		= models.FloatField(verbose_name='Costo Unitario de Producto', validators=[MinValueValidator(1)])
+	b 		= models.FloatField(verbose_name='Costo Unitario de Producto', validators=[MinValueValidator(0)], default=0)
 			
 	
 	def __str__(self):
@@ -67,9 +67,13 @@ class Modelo1(models.Model):
 
 	def longitud_ciclo(self):
 		lc = self.loc / (self.d/1)
-		print(lc)
+		
 		if(lc < 1):
-			lc = lc * 365 #paso a dias		
+			if (self.unidad == 'MES'):
+				lc = lc * 30 #paso a dias		
+			
+			if (self.unidad == 'AÑO'):
+				lc = lc * 365 #paso a dias		
 
 		return	format(lc, '.2f')
 
@@ -80,8 +84,10 @@ class Modelo1(models.Model):
 		dd = self.d
 		kk = self.k
 		hh = self.h
+		bb = self.b
 		yd = yy/dd
 		termino1 = kk / yd
 		termino2 = hh * (yy/2)
-		return round(termino1 + termino2) 
+		termino3 = bb * dd
+		return round(termino1 + termino2 + termino3) 
 	ci = property(costo_inventario)
