@@ -85,9 +85,13 @@ class Modelo1(models.Model):
 		kk = self.k
 		hh = self.h
 		bb = self.b
-		yd = yy/dd
-		termino1 = kk / yd
-		termino2 = hh * (yy/2)
-		termino3 = bb * dd
-		return round(termino1 + termino2 + termino3) 
+		#yd = yy/dd
+		#termino1 = kk / yd
+		#termino2 = hh * (yy/2)
+		#termino3 = bb * dd
+
+		termino1 = round(sqrt(2*dd*kk*hh))
+		termino2 = bb * dd		
+		return round(termino1 + termino2) 
+		#return round(termino1 + termino2 + termino3) 
 	ci = property(costo_inventario)
