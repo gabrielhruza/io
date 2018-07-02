@@ -22,8 +22,15 @@ class Modelo1(models.Model):
 	#stock actual
 	#stock 		= models.IntegerField(verbose_name = "Stock actual", default=100)
 	
-	#Tiempo de simulacion
-	tiempo 	= models.FloatField(default=1)
+	#Unidades para calcular la longitud de ciclo
+
+	UNIDAD = (
+		('DIAS' , 'dias'),
+		('MES' , 'mes'),
+		('AÑO' , 'año')
+	)
+
+	unidad 	= models.CharField(max_length=20, choices=UNIDAD, default='DIAS')
 
 	#Tasa de demanda (unidades por unidad de tiempo)
 	d		= models.IntegerField(verbose_name='Demanda Total', validators=[MinValueValidator(1)])
@@ -36,6 +43,8 @@ class Modelo1(models.Model):
 	#($ por unidad en inventario por unidad de tiempo)
 	h 		= models.FloatField(verbose_name='Costo Unitario de Almacenamiento', validators=[MinValueValidator(1)])
 
+	#Costo Unitario de Producto
+	h 		= models.FloatField(verbose_name='Costo Unitario de Producto', validators=[MinValueValidator(1)])
 			
 	
 	def __str__(self):
@@ -57,7 +66,7 @@ class Modelo1(models.Model):
 	loc = property(lote_optimo_compra)
 
 	def longitud_ciclo(self):
-		lc = self.loc / (self.d/self.tiempo)
+		lc = self.loc / (self.d/1)
 		print(lc)
 		if(lc < 1):
 			lc = lc * 365 #paso a dias		
