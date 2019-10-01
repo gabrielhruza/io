@@ -26,7 +26,7 @@ SECRET_KEY = '^*ifdker)^%w++g^&nxfgfu()f%k97=nxlevi(5ck_xd-p8w6h'
 DEBUG = True
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['127.0.0.1', 'sispmes.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
